@@ -84,4 +84,24 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+
+  home.file.".local/share/applications/dbeaver.desktop".text = ''
+    [Desktop Entry]
+    Version=1.0
+    Type=Application
+    Terminal=false
+    Name=dbeaver-ce
+    GenericName=Universal Database Manager
+    Comment=Universal Database Manager and SQL Client.
+    Exec=env _JAVA_AWT_WM_NONREPARENTING=1 GDK_BACKEND=x11 /nix/store/jji2nzc2diqwaffj1lf6si6lryki4brv-dbeaver-bin-24.3.0/bin/dbeaver
+    Icon=dbeaver
+    Categories=IDE;Development
+    StartupWMClass=DBeaver
+    StartupNotify=true
+    Keywords=Database;SQL;IDE;JDBC;ODBC;MySQL;PostgreSQL;Oracle;DB2;MariaDB
+    MimeType=application/sql
+  '';
+
+  
 }

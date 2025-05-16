@@ -18,12 +18,17 @@
 
   networking.hostName = "ideapad"; # Define your hostname.
   # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
 
   virtualisation = {
     containers.enable = true;
-    docker.enable = true;
+    docker = {
+        enable = true;
+        #daemon.settings = {
+        #    "experimental" = true;
+        #};
+    };
     podman = {
       enable = true;
       defaultNetwork.settings.dns_enabled = true;
@@ -51,7 +56,6 @@
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
 
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -117,15 +121,26 @@
   environment.systemPackages = with pkgs; [
     alsa-utils
     burpsuite
-    #davinci-resolve
+    cacert
+    chatgpt-cli
+    cmake
+    criu
+    davinci-resolve
+    dbeaver-bin
+    discord-ptb
     dive
     docker-compose
     dnsutils
+    extra-cmake-modules
+    filezilla
+    gcc
     gimp
     git
     gnumake
     google-chrome
     hoppscotch
+    isoimagewriter
+    jetbrains.idea-community
     kdePackages.gwenview
     kdePackages.dolphin
     kdePackages.kio-extras
@@ -133,6 +148,7 @@
     kdePackages.qtsvg
     kdePackages.qtwayland
     lazydocker
+    libgcc
     libreoffice-qt
     lunar-client
     man-pages
@@ -140,15 +156,20 @@
     neovim
     networkmanagerapplet
     obs-studio
+    openjdk
+    openssl
     openvpn
     p7zip
     pavucontrol
+    poetry
     podman-compose
     podman-tui
     python314
     qemu
+    rustup
     silver-searcher
     sql-studio
+    teams-for-linux
     texlive.combined.scheme-full
     thunderbird
     tig
@@ -161,8 +182,10 @@
     wireshark
   ];
 
+  programs.wireshark.enable = true;
+
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+   NIXOS_OZONE_WL = "1";
   };
 
   # Some programs need SUID wrappers, can be configured further or are

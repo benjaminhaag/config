@@ -20,6 +20,9 @@ return {
 
           -- TypeScript/JavaScript - braucht Node.JS
           "ts_ls",
+
+          -- Java Support
+          "jdtls"
         },
       })
 
@@ -35,6 +38,21 @@ return {
 
       -- TypeScript/JavaScript - siehe nächster Absatz!!
        require("typescript-tools").setup({})
+
+      
+      -- Java setup using jdtls
+      require("lspconfig").jdtls.setup({
+        cmd = { "jdtls" },  -- You can specify your JDTLS command here if needed
+        root_dir = require("lspconfig").util.root_pattern(".git", "pom.xml", "build.gradle", "settings.gradle"),
+        settings = {
+          java = {
+            configuration = {
+              -- You can add additional settings for Java here if needed
+            }
+          }
+        },
+      })
+
     end
   }
 }
